@@ -20,6 +20,8 @@ def open_send_mail_api_form(step):
 def enter_values_in_send_mail_api_form(step):
     world.page.enter_to_email(settings.EMAIL)
     world.page.enter_to_name(settings.NAME)
+    world.page.enter_from_email(settings.EMAIL)
+    world.page.enter_from_name(settings.NAME)
 
 @step(u'I click on the Try It button on the send mail API form')
 def when_i_click_on_the_try_it_button_on_the_send_mail_api_form(step):

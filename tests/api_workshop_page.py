@@ -25,6 +25,10 @@ TO_EMAIL_BY = By.NAME
 TO_EMAIL_LOCATOR = "params[to]"
 TO_NAME_BY = By.NAME
 TO_NAME_LOCATOR = "params[toname]"
+FROM_EMAIL_BY = By.NAME
+FROM_EMAIL_LOCATOR = "params[from]"
+FROM_NAME_BY = By.NAME
+FROM_NAME_LOCATOR = "params[fromname]"
 
 class ApiWorkshopPage:
     def __init__(self, driver):
@@ -68,3 +72,12 @@ class ApiWorkshopPage:
     def enter_to_name(self, name):
         self.__mail_section().find_element(TO_NAME_BY, TO_NAME_LOCATOR)\
             .send_keys(name)
+
+    def enter_from_email(self, email):
+        self.__mail_section().find_element(FROM_EMAIL_BY, FROM_EMAIL_LOCATOR)\
+            .send_keys(email)
+
+    def enter_from_name(self, name):
+        self.__mail_section().find_element(FROM_NAME_BY, FROM_NAME_LOCATOR)\
+            .send_keys(name)
+
