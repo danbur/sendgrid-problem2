@@ -1,5 +1,6 @@
 from lettuce import *
 from api_workshop_page import ApiWorkshopPage
+import credentials
 
 @step(u'Given I am on the SendGrid API Workshop page')
 def on_the_sendgrid_api_workshop_page(step):
@@ -8,7 +9,9 @@ def on_the_sendgrid_api_workshop_page(step):
 
 @step(u'When I enter my credentials in the login form')
 def when_i_enter_my_credentials_in_the_login_form(step):
-    assert False, 'This step must be implemented'
+    world.page.enter_login(credentials.LOGIN)
+    world.page.enter_password(credentials.PASSWORD)
+
 @step(u'When I open the send mail API form')
 def when_i_open_the_send_mail_api_form(step):
     assert False, 'This step must be implemented'
