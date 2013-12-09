@@ -1,0 +1,5 @@
+*.pyc
+*~
+\#*#
+.#*
+C:\\nppdf32Log\\debuglog.txt
