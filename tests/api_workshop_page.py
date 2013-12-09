@@ -21,14 +21,13 @@ FORM_EXPANDER_BY = By.ID
 FORM_EXPANDER_LOCATOR = "toggle-methods"
 FORM_BY = By.TAG_NAME
 FORM_LOCATOR = "form"
-TO_EMAIL_BY = By.NAME
-TO_EMAIL_LOCATOR = "params[to]"
-TO_NAME_BY = By.NAME
-TO_NAME_LOCATOR = "params[toname]"
-FROM_EMAIL_BY = By.NAME
-FROM_EMAIL_LOCATOR = "params[from]"
-FROM_NAME_BY = By.NAME
-FROM_NAME_LOCATOR = "params[fromname]"
+FIELD_ENTRY_BY = By.NAME
+FIELD_ENTRY_LOCATOR_PREFIX = "params["
+FIELD_ENTRY_LOCATOR_SUFFIX = "]"
+TRY_IT_BY = By.ID
+TRY_IT_LOCATOR = "Mail"
+RESPONSE_BY = By.CLASS_NAME
+RESPONSE_LOCATOR = "response"
 
 class ApiWorkshopPage:
     def __init__(self, driver):
@@ -65,19 +64,18 @@ class ApiWorkshopPage:
         form = self.__mail_section().find_element(FORM_BY, FORM_LOCATOR)
         WebDriverWait(self.driver, TIMEOUT).until(EC.visibility_of(form))
 
-    def enter_to_email(self, email):
-        self.__mail_section().find_element(TO_EMAIL_BY, TO_EMAIL_LOCATOR)\
-            .send_keys(email)
+    def enter_field_data(self, field, value):
+        locator = FIELD_ENTRY_LOCATOR_PREFIX + field + \
+            FIELD_ENTRY_LOCATOR_SUFFIX
+        self.__mail_section().find_element(FIELD_ENTRY_BY, locator).\
+            send_keys(value)
 
-    def enter_to_name(self, name):
-        self.__mail_section().find_element(TO_NAME_BY, TO_NAME_LOCATOR)\
-            .send_keys(name)
+    def click_try_it(self):
+        self.driver.find_element(TRY_IT_BY, TRY_IT_LOCATOR).click()
+        WebDriverWait(self.driver, TIMEOUT).until(\
+            EC.presence_of_element_located(\
+                (RESPONSE_BY, RESPONSE_LOCATOR)))
 
-    def enter_from_email(self, email):
-        self.__mail_section().find_element(FROM_EMAIL_BY, FROM_EMAIL_LOCATOR)\
-            .send_keys(email)
-
-    def enter_from_name(self, name):
-        self.__mail_section().find_element(FROM_NAME_BY, FROM_NAME_LOCATOR)\
-            .send_keys(name)
-
+    def get_response_body(self):
+        return self.__mail_section()\
+            .find_element(RESPONSE_BY, RESPONSE_LOCATOR).text
