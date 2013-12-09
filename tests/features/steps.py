@@ -1,17 +1,10 @@
 from lettuce import *
-from selenium import webdriver
-
-@before.each_scenario
-def start_webdriver(scenario):
-    world.driver = webdriver.Firefox()
-
-#@after.each_scenario
-#def quit_webdriver(scenario):
-    #world.driver.quit()
+from api_workshop_page import ApiWorkshopPage
 
 @step(u'Given I am on the SendGrid API Workshop page')
 def on_the_sendgrid_api_workshop_page(step):
     world.driver.get("http://sendgrid.com/docs/api_workshop.html")
+    world.page = ApiWorkshopPage(world.driver)
 
 @step(u'When I enter my credentials in the login form')
 def when_i_enter_my_credentials_in_the_login_form(step):
