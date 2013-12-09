@@ -1,0 +1,10 @@
+# This is an example settings file.
+# Fill in the login and password below and copy this file to settings.py
+
+# API Login Credentials
+LOGIN = 'mylogin'
+PASSWORD = 'mypassword'
+
+# Name and email address to use in the from/to fields
+EMAIL = 'myemail@mydomain'
+NAME = 'John Doe'
